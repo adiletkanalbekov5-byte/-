@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-6">🎯 Жанры</h1>
+
+<ul class="space-y-2">
+    {% for genre in genres %}
+    <li>
+        <a href="/genres/{{ genre.id }}/" class="text-blue-600 hover:underline">
+            {{ genre.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
