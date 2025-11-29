@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="bg-white p-6 rounded-xl shadow">
+    <img src="{{ book.image }}" class="rounded w-full h-64 object-cover">
+    <h1 class="text-4xl font-bold mt-4">{{ book.title }}</h1>
+    <p class="text-gray-700 mt-2">Автор: {{ book.author.name }}</p>
+    <p class="mt-4">{{ book.description }}</p>
+</div>
+
+{% endblock %}

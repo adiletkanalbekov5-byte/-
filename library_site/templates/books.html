@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-6">📘 Каталог книг</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {% for book in books %}
+    <div class="bg-white shadow rounded-xl p-4 hover:shadow-lg transition">
+        <img src="{{ book.image }}" class="rounded w-full h-48 object-cover">
+        <h3 class="font-bold text-xl mt-3">{{ book.title }}</h3>
+        <p class="text-gray-600">{{ book.author.name }}</p>
+        <a href="/books/{{ book.id }}/" class="text-blue-600 underline">Подробнее</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
