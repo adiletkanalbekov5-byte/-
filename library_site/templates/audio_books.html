@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="text-4xl font-extrabold text-center mb-10 mt-4 text-purple-700">🎧 Аудиокниги</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 px-6">
+    {% for book in books %}
+    <div class="bg-white rounded-3xl shadow-xl p-6 hover:scale-105 transform transition duration-300 hover:shadow-2xl">
+        <h2 class="text-2xl font-bold mb-2 text-center text-purple-600">{{ book.title }}</h2>
+        <p class="text-gray-600 mb-4 text-center">Автор: {{ book.author.name }}</p>
+
+        {% if book.audio_file %}
+        <!-- Линия аудио -->
+        <audio id="audioPlayer{{ forloop.counter }}" controls class="w-full mb-4 rounded-lg">
+            <source src="{{ book.audio_file.url }}" type="audio/mpeg">
+            Ваш браузер не поддерживает аудио.
+        </audio>
+
+        <!-- Кнопки управления -->
+        <div class="flex gap-2 flex-wrap justify-center mb-2">
+            <button class="px-4 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600"
+                    onclick="document.getElementById('audioPlayer{{ forloop.counter }}').play()">▶️ Play</button>
+            <button class="px-4 py-2 bg-yellow-500 text-white rounded-xl hover:bg-yellow-600"
+                    onclick="document.getElementById('audioPlayer{{ forloop.counter }}').pause()">⏸ Pause</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600"
+                    onclick="stopAudio('audioPlayer{{ forloop.counter }}')">⏹ Stop</button>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                    onclick="skipAudio('audioPlayer{{ forloop.counter }}', -10)">⏪ -10s</button>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                    onclick="skipAudio('audioPlayer{{ forloop.counter }}', 10)">⏩ +10s</button>
+            <a href="{{ book.audio_file.url }}" download
+               class="px-4 py-2 bg-purple-500 text-white rounded-xl hover:bg-purple-600">💾 Download</a>
+        </div>
+        {% else %}
+        <p class="text-center text-gray-400">Аудио нет</p>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p class="text-gray-500 text-center col-span-full">Аудиокниги пока не добавлены.</p>
+    {% endfor %}
+</div>
+
+<script>
+function stopAudio(id) {
+    const player = document.getElementById(id);
+    player.pause();
+    player.currentTime = 0;
+}
+
+function skipAudio(id, seconds) {
+    const player = document.getElementById(id);
+    player.currentTime += seconds;
+}
+</script>
+
+{% endblock %}

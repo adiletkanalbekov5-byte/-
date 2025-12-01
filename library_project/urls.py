@@ -39,4 +39,5 @@ urlpatterns = [
 
     # SITE
     path('', include('library_site.urls')),
+    path('', include('library_site.urls')),
 ]

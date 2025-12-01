@@ -5,11 +5,19 @@ from django.db import models
 from .models import Book, Author, Genre
 from .serializers import BookSerializer, AuthorSerializer, GenreSerializer
 
+from django.shortcuts import render
+from .models import Book
+
+def audio_books(request):
+    books_with_audio = Book.objects.filter(audio_file__isnull=False)  # Только с аудио
+    return render(request, "audio_books.html", {"books": books_with_audio})
 
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
-
+class AuthorDetailView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
 
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()  # ← ТУТ было неправильно
@@ -27,7 +35,4 @@ class BookViewSet(viewsets.ModelViewSet):
         'author__name',
         'genre__name',
     ]
-class AuthorDetailView(generics.RetrieveAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
 

@@ -33,3 +33,7 @@ def genre_detail(request, pk):
 
 def index(request):
     return render(request, "index.html")
+
+def audio_books(request):
+    books_with_audio = Book.objects.filter(audio_file__isnull=False)
+    return render(request, "audio_books.html", {"books": books_with_audio})

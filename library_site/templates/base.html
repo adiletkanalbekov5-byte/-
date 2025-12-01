@@ -6,22 +6,47 @@
     <title>Library</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-50 font-sans text-gray-800">
 
-<body class="bg-gray-100">
-    <nav class="bg-blue-600 text-white p-4 shadow">
-        <div class="container mx-auto flex justify-between">
-            <h1 class="font-bold text-xl">📚 Library</h1>
-            <div class="space-x-4">
-                <a href="/" class="hover:underline">Главная</a>
-                <a href="/books/" class="hover:underline">Книги</a>
-                <a href="/authors/" class="hover:underline">Авторы</a>
-                <a href="/genres/" class="hover:underline">Жанры</a>
+
+
+        <!-- Баннер -->
+        <div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-14 text-white shadow-2xl mb-16 text-center">
+            <h1 class="text-5xl font-bold mb-5 animate-pulse">Добро пожаловать в 📚 Library!</h1>
+            <p class="text-xl mb-8">Исследуй книги, авторов, жанры и слушай аудиокниги прямо здесь!</p>
+            <a href="/books/" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-4 rounded-xl shadow-lg transition">📖 Перейти к книгам</a>
+        </div>
+
+        <!-- Карточки категорий -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"> <!-- Увеличен gap -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 hover:scale-105 transform transition duration-300">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">📚 Новинки</h2>
+                <p class="text-gray-600 mb-4">Смотрите самые свежие книги в нашей библиотеке.</p>
+                <a href="/books/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition">Смотреть</a>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 hover:scale-105 transform transition duration-300">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">🎧 Аудиокниги</h2>
+                <p class="text-gray-600 mb-4">Слушайте любимые книги в удобное время.</p>
+                <a href="/audio/" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl transition">Слушать</a>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 hover:scale-105 transform transition duration-300">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">✍️ Авторы</h2>
+                <p class="text-gray-600 mb-4">Познакомьтесь с нашими известными авторами.</p>
+                <a href="/authors/" class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-xl transition">Подробнее</a>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 hover:scale-105 transform transition duration-300">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">📂 Жанры</h2>
+                <p class="text-gray-600 mb-4">Найдите книги по любимым жанрам.</p>
+                <a href="/genres/" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition">Изучить</a>
             </div>
         </div>
-    </nav>
 
-    <main class="container mx-auto mt-6">
         {% block content %}{% endblock %}
+
     </main>
+
 </body>
 </html>

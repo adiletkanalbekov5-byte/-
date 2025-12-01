@@ -1,16 +1,19 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% block content %}
 
-<h1 class="text-3xl font-bold mb-6">🎯 Жанры</h1>
+<h1 class="text-4xl font-extrabold text-center mb-10 mt-4 text-purple-700">📂 Жанры книг</h1>
 
-<ul class="space-y-2">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 px-6">
     {% for genre in genres %}
-    <li>
-        <a href="/genres/{{ genre.id }}/" class="text-blue-600 hover:underline">
-            {{ genre.name }}
-        </a>
-    </li>
+    <div class="bg-white rounded-3xl shadow-xl p-8 hover:scale-105 transform transition duration-300 hover:shadow-2xl">
+        <h2 class="text-2xl font-bold mb-4 text-center text-indigo-600">{{ genre.name }}</h2>
+        <p class="text-gray-600 mb-6 text-center">Просмотрите книги этого жанра.</p>
+        <a href="/genres/{{ genre.id }}/" class="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-center px-6 py-3 rounded-xl transition mx-auto w-max">Перейти</a>
+    </div>
+    {% empty %}
+    <p class="text-gray-500 text-center col-span-full">Жанры пока не добавлены.</p>
     {% endfor %}
-</ul>
+</div>
 
 {% endblock %}

@@ -9,4 +9,6 @@ urlpatterns = [
     path('authors/<int:pk>/', views.genre_detail),
     path('genres/', views.genres),
     path('genres/<int:pk>/', views.genre_detail),
+    path("audio-books/", views.audio_books, name="audio_books"),
+    path("audio/", views.audio_books),
 ]
